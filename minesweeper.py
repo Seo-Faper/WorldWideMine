@@ -2,13 +2,13 @@ import random
 
 width = 10
 height = 10
-k = 18
+mine = 18
 
 
 class MineSweeperMaking:
     def __init__(self):
         self.mapping = [[0 for i in range(width)] for j in range(height)]
-        self.plant(self.mapping, k, 0)
+        self.plant(self.mapping, mine, 0)
         self.printMap = ""
         for i in range(height):
             for j in range(width):

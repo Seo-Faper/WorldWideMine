@@ -30,15 +30,12 @@ class MineSweeperMaking:
 
     def counting(self, temp, x, y):
         stack = []
-        que = []
         for i in range(3):
             for j in range(3):
                 stack.append([x + i - 1, y + j - 1])
-        for i in range(9):
+        for i in reversed(range(9)):
             if stack[i][0] < 0 or stack[i][1] < 0 or stack[i][0] > height-1 or stack[i][1] > width-1:
-                que.append(i)
-        for i in reversed(range(len(que))):
-            del stack[que[i]]
+                del stack[i]
         for i in range(len(stack)):
             a = int(stack[i][0])
             b = int(stack[i][1])

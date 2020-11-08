@@ -13,6 +13,7 @@ class MineSweeperMaker:
         for i in range(height):
             for j in range(width):
                 self.mapping[i][j].append("X")
+        print(self.printing())
         while self.keep_going:
             x, y = map(int, input().split())
             self.clicking(self.mapping, x, y)

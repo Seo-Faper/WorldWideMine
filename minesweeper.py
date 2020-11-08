@@ -61,7 +61,7 @@ class MineSweeperMaker:
                 temp[a][b][1] = temp[a][b][0]
                 self.mapping = temp
                 self.chain(temp, a, b)
-            else:
+            elif temp[a][b][0] != "*":
                 temp[a][b][1] = temp[a][b][0]
                 self.mapping = temp
 

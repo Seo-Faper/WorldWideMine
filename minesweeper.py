@@ -48,23 +48,24 @@ class MineSweeperMaker:
     def chain(self, temp, x, y):
         temp[x][y][1] = temp[x][y][0]
         stack = []
-        for i in range(3):
-            for j in range(3):
-                stack.append([x + i - 1, y + j - 1])
-        for i in reversed(range(9)):
-            if stack[i][0] < 0 or stack[i][1] < 0 or stack[i][0] > height-1 or stack[i][1] > width-1 or\
-                    (stack[i][0] == x and stack[i][1] == y):
-                del stack[i]
-        for i in range(len(stack)):
-            a = int(stack[i][0])
-            b = int(stack[i][1])
-            if temp[a][b][0] == 0 and temp[a][b][1] == "X":
-                temp[a][b][1] = temp[a][b][0]
-                self.mapping = temp
-                self.chain(temp, a, b)
-            elif temp[a][b][0] != "*":
-                temp[a][b][1] = temp[a][b][0]
-                self.mapping = temp
+        if temp[x][y][0] == 0:
+            for i in range(3):
+                for j in range(3):
+                    stack.append([x + i - 1, y + j - 1])
+            for i in reversed(range(9)):
+                if stack[i][0] < 0 or stack[i][1] < 0 or stack[i][0] > height-1 or stack[i][1] > width-1 or\
+                        (stack[i][0] == x and stack[i][1] == y):
+                    del stack[i]
+            for i in range(len(stack)):
+                a = int(stack[i][0])
+                b = int(stack[i][1])
+                if temp[a][b][1] == "X":
+                    temp[a][b][1] = temp[a][b][0]
+                    self.mapping = temp
+                    self.chain(temp, a, b)
+                elif temp[a][b][0] != "*":
+                    temp[a][b][1] = temp[a][b][0]
+                    self.mapping = temp
 
     def printing(self):
         print_map = ""

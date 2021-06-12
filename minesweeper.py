@@ -10,6 +10,7 @@ class MineSweeperMaker:
         self.keep_going = True
         self.mapping = [[[0] for i in range(width)] for j in range(height)]
         self.plant(self.mapping, mine, 0)
+
         for i in range(height):
             for j in range(width):
                 self.mapping[i][j].append("X")
@@ -75,9 +76,11 @@ class MineSweeperMaker:
             print_map += "\n"
         return print_map
 
-    def clicking(self, temp, x, y):
+    def clicking(self, temp, x, y):1
         if temp[x][y][0] == "*":
+            temp[x][y][1] = "*"
             self.keep_going = False
+            print(self.printing())
             print("Game over")
         else:
             self.chain(temp, x, y)

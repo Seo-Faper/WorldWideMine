@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <meta charset="utf-8">
+    <title>list</title>
+  </head>
+  <body>
+      <script>
+const height = 10;
+const width = 10;
+const mine = 18;
+
+//3차원 배열 생성
+var mapping = new Array(height); 
+for(var i=0; i<height; i++){
+    mapping[i] = new Array(width);
+	for(var j=0; j<width; j++){
+		mapping[i][j] = new Array(2);
+	}
+}
+
+plant(mapping,mine,0)
+
+for(i = 0; i<height; i++){
+    for(j = 0; j<width;j ++){
+        mapping[i][j][1] = 'X';
+    }
+}
+
+printing()
+
+
+function plant(temp,mines,numbering){
+    while(numbering <= mines){
+        const randomX = Math.random() * height;
+        const x = Math.floor(randomX);
+        const randomY = Math.random() * height;
+        const y = Math.floor(randomY);
+        if(temp[x][y] == '*'){
+            return plant(temp,mines,numbering);
+        }else{
+            temp[x][y][0] = '*';
+            return plant(temp,mines,numbering+1)
+        }
+    }
+}
+
+function printing(){
+    var print_map = "<table>"
+        for(i = 0; i<height; i++){
+            print_map +="<tr>"
+                for(j = 0; j<width; j++){
+                    print_map +="<td>"+mapping[i][j][1]+"</td>"
+                }
+            print_map +="</tr>"
+        }
+        print_map+="</table>"
+    document.write(print_map)
+}
+      </script>
+  </body>
+</html>
